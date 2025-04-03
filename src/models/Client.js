@@ -1,24 +1,34 @@
-const { DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Client = sequelize.define('Client', {
-  nombre: {
-    type: DataTypes.STRING,
-    allowNull: false,
+class Client extends Model {}
+
+Client.init(
+  {
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    cuit: {
+      type: DataTypes.STRING,
+      unique: true,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    honorarios: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
   },
-  cuit: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  honorarios: {
-    type: DataTypes.FLOAT,
-    allowNull: true,
-  },
-});
+  {
+    sequelize,            // Instancia de conexión
+    modelName: 'Client',  // Nombre del modelo
+    tableName: 'clients', // Nombre explícito de la tabla en la DB
+    timestamps: true,     // createdAt y updatedAt automáticos
+  }
+);
 
 module.exports = Client;
