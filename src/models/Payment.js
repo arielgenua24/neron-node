@@ -5,18 +5,19 @@ class Payment extends Model {}
 
 Payment.init(
   {
-    client_id: {
+    id: {
       type: DataTypes.BIGINT,
-      allowNull: false,
-      references: {
-        model: 'clients',    // nombre real de la tabla
-        key: 'id',
-      },
+      primaryKey: true,
+      autoIncrement: true,
     },
     payment_month: {
-      type: DataTypes.TINYINT,
-      allowNull: false,
-    },
+        type: DataTypes.INTEGER,   // o DataTypes.INTEGER
+        allowNull: false,
+        validate: {
+          min: 1,
+          max: 12,
+        },
+      },
     payment_year: {
       type: DataTypes.SMALLINT,
       allowNull: false,
@@ -25,8 +26,8 @@ Payment.init(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
-    payment_date: {
-      type: DataTypes.DATE,
+    payment_day: {
+      type: DataTypes.SMALLINT,
       allowNull: false,
     },
     // Los timestamps (created_at, updated_at) los creará Sequelize automáticamente

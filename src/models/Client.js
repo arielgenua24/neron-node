@@ -5,6 +5,12 @@ class Client extends Model {}
 
 Client.init(
   {
+    // ID autoincremental
+    id: {
+      type: DataTypes.BIGINT,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
