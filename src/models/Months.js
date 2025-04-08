@@ -16,14 +16,6 @@ Months.init(
       allowNull: false,
       unique: true,
     },
-    createdAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      allowNull: false,
-      type: DataTypes.DATE,
-    },
   },
   {
     sequelize,             // Instancia de conexión
