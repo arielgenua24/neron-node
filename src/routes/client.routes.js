@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const boom = require('@hapi/boom');
 const clientService = require('../services/client.service');
-const validatorHandler = require('../middlewares/validator.handler');
+const validatorHandler = require('../middlewares/validatorHandler');
 const {
   createClientSchema,
   updateClientSchema,
@@ -17,6 +17,20 @@ router.post(
     try {
       const newClient = await clientService.create(req.body);
       res.status(201).json(newClient);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// Obtener cliente por ID
+router.get('/',
+  async (req, res, next) => {
+    try {
+      console.log('Obteniendo todos los clientes');
+      const client = await clientService.findAll();
+      if (!client) throw boom.notFound('Cliente no encontrado');
+      res.json(client);
     } catch (err) {
       next(err);
     }
@@ -55,3 +69,5 @@ router.put(
     }
   }
 );
+
+module.exports = router;

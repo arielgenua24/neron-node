@@ -80,7 +80,7 @@ module.exports = {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
-      payment_day: {
+      payment_date: {
         type: Sequelize.SMALLINT,
         allowNull: false,
       },

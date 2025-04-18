@@ -26,7 +26,7 @@ Payment.init(
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
-    payment_day: {
+    payment_date: {
       type: DataTypes.SMALLINT,
       allowNull: false,
     },
