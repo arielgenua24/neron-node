@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const boom = require('@hapi/boom');
 const paymentService = require('../services/payment.service');
+const ClientPaymentService = require('../services/clientPayment.service');
 const validatorHandler = require('../middlewares/validatorHandler');
 const {
     createPaymentSchema,
@@ -9,13 +10,37 @@ const {
     getPaymentSchema,
   } = require('../schemas/payment.schema');
 
+const {
+  createClientPaymentSchema,
+  updateClientPaymentSchema,
+  getClientPaymentSchema,
+} = require('../schemas/clientPayment.schema');
+
+//concatenacion de validadores
+const fullSchema = createPaymentSchema.concat(createClientPaymentSchema);
+
 // Crear pago
 router.post(
   '/',
-  validatorHandler(createPaymentSchema, 'body'),
+  validatorHandler(fullSchema, 'body'),
   async (req, res, next) => {
     try {
       const newPayment = await paymentService.create(req.body);
+      const { month_id, client_id } = req.body;
+
+      if(!!newPayment) {
+        const { id } = newPayment;
+        const body = req.body;
+        console.log(body)
+        console.log(id)
+        const clientPayment = {
+          payment_id: id,
+          month_id,
+          client_id,
+        };
+        console.log(clientPayment)
+        // await ClientPaymentService.create(clientPayment);
+      }
       res.status(201).json(newPayment);
     } catch (err) {
       next(err);

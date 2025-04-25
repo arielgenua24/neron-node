@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-class Client extends Model {}
+class User extends Model {}
 
-Client.init(
+User.init(
   {
     // ID autoincremental
     id: {
@@ -15,11 +15,6 @@ Client.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    cuit: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false,
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,10 +22,10 @@ Client.init(
   },
   {
     sequelize,            // Instancia de conexión
-    modelName: 'Client',  // Nombre del modelo
-    tableName: 'clients', // Nombre explícito de la tabla en la DB
+    modelName: 'User',   // Nombre del modelo
+    tableName: 'users',   // Nombre explícito de la tabla en la DB
     timestamps: true,     // createdAt y updatedAt automáticos
   }
 );
 
-module.exports = Client;
+module.exports = User;
