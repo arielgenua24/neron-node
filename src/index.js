@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 
 // Después de todas las rutas
 app.use(errorHandler);
+require('./utils/auth');
 
 sequelize
   .authenticate()

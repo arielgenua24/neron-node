@@ -15,6 +15,14 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true, // Asegura que el email sea único
+      validate: {
+        isEmail: true, // Valida que el formato del email sea correcto
+      },
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
