@@ -14,6 +14,7 @@ class ClientService {
     return client;
   }
 
+
   // Obtener todos con paginación (15 por página)
   async findAll(page = 1) {
     const limit = 15;

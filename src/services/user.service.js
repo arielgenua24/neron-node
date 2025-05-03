@@ -1,7 +1,7 @@
 // services/client.service.js
 const { User } = require('../models');
 
-class User {
+class UserService {
   // Crear cliente
   async create(data) {
     const client = await User.create(data);
@@ -9,7 +9,7 @@ class User {
   }
 
   // Obtener un usuario por ID
-  async findOne() {
+  async findOne(id) {
     const client = await User.findByPk(id);
     return client;
   }
@@ -44,4 +44,4 @@ class User {
   }
 }
 
-module.exports = new User();
+module.exports = new UserService();

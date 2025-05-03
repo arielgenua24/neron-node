@@ -5,6 +5,7 @@ const sequelize = require('../config/database'); // 👈 Falta esto
 const Client = require('./Client');
 const Payment = require('./Payment');
 const ClientPayment = require('./ClientPayment');
+const User = require('./Users');  // Importar el modelo User
 
 // 1. Definimos la relación entre ClientPayment y Client
 
@@ -36,4 +37,5 @@ module.exports = {
   Client,
   Payment,
   ClientPayment,
+  User,  // Exportar el modelo User
 };

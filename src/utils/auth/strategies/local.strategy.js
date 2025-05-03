@@ -1,7 +1,7 @@
 // src/auth/strategies/local.strategy.js
 const boom       = require('@hapi/boom');
 const { Strategy } = require('passport-local');
-const clientService = require('../../../services/client.service');
+const userService = require('../../../services/user.service');
 const PasswordManager = require('../../../security/passManager');
 
 module.exports = new Strategy(
@@ -12,7 +12,7 @@ module.exports = new Strategy(
   async (email, password, done) => {
     try {
       // 1) Buscamos al usuario por email
-      const user = await clientService.findOneByEmail(email);
+      const user = await userService.findOneByEmail(email);
       if (!user) {
         return done(boom.unauthorized('Usuario no encontrado'), false);
       }
